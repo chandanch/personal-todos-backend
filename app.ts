@@ -1,13 +1,13 @@
-const express = require('express');
+import express, { Express, Request, Response } from 'express';
 
 // 1. Create an instance of express
-const app = express();
+const app: Express = express();
 
 // 2. Define the port on which the express app will run
-const APP_PORT = 4000;
+const APP_PORT: number = 4000;
 
 // 3. Create an default route
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
 	res.send('Server is running');
 });
 
