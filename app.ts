@@ -20,7 +20,7 @@ const AppDataSource: DataSource = new DataSource({
 	password: process.env.DB_PWD,
 	database: process.env.DB_NAME,
 	synchronize: true,
-	ssl: true,
+	// ssl: true,
 });
 
 // 4. Create an default route
