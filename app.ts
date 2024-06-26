@@ -1,9 +1,10 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { DataSource } from 'typeorm';
 
 // init dotenv
 dotenv.config();
+
+import { AppDataSource } from './data-source';
 
 // 1. Create an instance of express
 const app: Express = express();
@@ -12,16 +13,16 @@ const app: Express = express();
 const APP_PORT: number = Number(process.env.APP_PORT) || 4000;
 
 // 3. Create a connection to DB using DataSource
-const AppDataSource: DataSource = new DataSource({
-	type: 'mysql',
-	host: process.env.DB_HOST,
-	port: Number(process.env.DB_PORT),
-	username: process.env.DB_USER,
-	password: process.env.DB_PWD,
-	database: process.env.DB_NAME,
-	synchronize: true,
-	// ssl: true,
-});
+// const AppDataSource: DataSource = new DataSource({
+// 	type: 'mysql',
+// 	host: process.env.DB_HOST,
+// 	port: Number(process.env.DB_PORT),
+// 	username: process.env.DB_USER,
+// 	password: process.env.DB_PWD,
+// 	database: process.env.DB_NAME,
+// 	synchronize: true,
+// 	// ssl: true,
+// });
 
 // 4. Create an default route
 app.get('/', (req: Request, res: Response) => {
