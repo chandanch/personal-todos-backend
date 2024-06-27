@@ -1,5 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 // init dotenv
 dotenv.config();
@@ -23,6 +25,13 @@ const APP_PORT: number = Number(process.env.APP_PORT) || 4000;
 // 	synchronize: true,
 // 	// ssl: true,
 // });
+
+// setup body parser
+// binds request payload to request.body property
+app.use(bodyParser.json());
+
+// setup cors
+app.use(cors());
 
 // 4. Create an default route
 app.get('/', (req: Request, res: Response) => {
