@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -7,6 +7,7 @@ import cors from 'cors';
 dotenv.config();
 
 import { AppDataSource } from './data-source';
+import { taskRouteBasePath, taskRouter } from './src/tasks/task.router';
 
 // 1. Create an instance of express
 const app: Express = express();
@@ -34,9 +35,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // 4. Create an default route
-app.get('/', (req: Request, res: Response) => {
-	res.send('Server is running');
-});
+// app.get('/', (req: Request, res: Response) => {
+// 	res.send('Server is running');
+// });
 
 // 5. Init DB
 AppDataSource.initialize()
@@ -48,3 +49,6 @@ AppDataSource.initialize()
 		});
 	})
 	.catch((err) => console.log('Error when connecting to DB', err));
+
+// 6. Add all the routes here
+app.use(taskRouteBasePath, taskRouter);
