@@ -15,4 +15,9 @@ taskRouter.get('/', async (req: Request, res: Response) => {
 	}
 });
 
+taskRouter.post('/', async (req: Request, res: Response) => {
+	console.log(req, res);
+	res.send(req.body);
+});
+
 export { taskRouter, taskRouteBasePath };
