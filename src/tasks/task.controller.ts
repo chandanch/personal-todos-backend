@@ -1,5 +1,6 @@
 import { AppDataSource } from '../../data-source';
 import { Task } from './task.entity';
+import { instanceToPlain } from 'class-transformer';
 
 class TaskController {
 	constructor(private taskRepository = AppDataSource.getRepository(Task)) {}
@@ -13,8 +14,8 @@ class TaskController {
 					duedate: 'ASC',
 				},
 			});
-			console.log(tasks);
-			return tasks;
+
+			return instanceToPlain(tasks) as Task[];
 		} catch (error) {
 			console.log(error);
 			throw error;
