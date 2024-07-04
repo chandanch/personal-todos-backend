@@ -7,8 +7,8 @@ const taskRouter: Router = Router();
 
 taskRouter.get('/', async (req: Request, res: Response) => {
 	const taskController: TaskController = new TaskController();
-	await taskController.fetchAllTasks();
-	res.send({ tasks: ['Sample task'] });
+	const tasks = await taskController.fetchAllTasks();
+	res.status(200).send(tasks);
 });
 
 export { taskRouter, taskRouteBasePath };
