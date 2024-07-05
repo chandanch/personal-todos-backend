@@ -23,4 +23,4 @@ class TaskController {
 	}
 }
 
-export default TaskController;
+export const taskController: TaskController = new TaskController();
