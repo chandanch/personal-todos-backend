@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express';
 import TaskController from './task.controller';
+import { createTaskValidator } from './task.validator';
+import { requestValidator } from '../helpers/request-validator';
 
 const taskRouteBasePath: string = '/tasks';
 
@@ -15,9 +17,14 @@ taskRouter.get('/', async (req: Request, res: Response) => {
 	}
 });
 
-taskRouter.post('/', async (req: Request, res: Response) => {
-	console.log(req, res);
-	res.send(req.body);
-});
+taskRouter.post(
+	'/',
+	createTaskValidator,
+	requestValidator,
+	async (req: Request, res: Response) => {
+		console.log(req, res);
+		res.send(req.body);
+	},
+);
 
 export { taskRouter, taskRouteBasePath };
