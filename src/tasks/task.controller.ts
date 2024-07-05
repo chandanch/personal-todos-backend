@@ -3,13 +3,13 @@ import { Task } from './task.entity';
 import { instanceToPlain } from 'class-transformer';
 
 class TaskController {
-	constructor(private taskRepository = AppDataSource.getRepository(Task)) {}
-
 	async fetchAllTasks(): Promise<Task[]> {
+		const taskRepository = AppDataSource.getRepository(Task);
+
 		let tasks: Task[];
 
 		try {
-			tasks = await this.taskRepository.find({
+			tasks = await taskRepository.find({
 				order: {
 					duedate: 'ASC',
 				},
