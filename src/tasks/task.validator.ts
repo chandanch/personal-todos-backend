@@ -1,8 +1,8 @@
-import { body } from 'express-validator';
+import { ValidationChain, body } from 'express-validator';
 import { Priority } from '../enums/priority';
 import { Status } from '../enums/status';
 
-export const createTaskValidator = [
+export const createTaskValidator: Array<ValidationChain> = [
 	body('title')
 		.not()
 		.isEmpty()
