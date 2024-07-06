@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import { taskController } from './task.controller';
 import { createTaskValidator } from './task.validator';
 import { requestValidator } from '../helpers/request-validator';
@@ -13,10 +13,7 @@ taskRouter.post(
 	'/',
 	createTaskValidator,
 	requestValidator,
-	async (req: Request, res: Response) => {
-		console.log(req, res);
-		res.send(req.body);
-	},
+	taskController.createTask,
 );
 
 export { taskRouter, taskRouteBasePath };
