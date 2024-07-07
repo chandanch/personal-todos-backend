@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { taskController } from './task.controller';
-import { createTaskValidator } from './task.validator';
+import { createTaskValidationRules } from './task.validator';
 import { requestValidator } from '../helpers/request-validator';
 
 const taskRouteBasePath: string = '/tasks';
@@ -11,7 +11,7 @@ taskRouter.get('/', taskController.fetchAllTasks);
 
 taskRouter.post(
 	'/',
-	createTaskValidator,
+	createTaskValidationRules,
 	requestValidator,
 	taskController.createTask,
 );
