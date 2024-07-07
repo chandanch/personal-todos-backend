@@ -2,7 +2,7 @@ import { ValidationChain, body } from 'express-validator';
 import { Priority } from '../enums/priority';
 import { Status } from '../enums/status';
 
-export const createTaskValidator: Array<ValidationChain> = [
+export const createTaskValidationRules: Array<ValidationChain> = [
 	body('title')
 		.not()
 		.isEmpty()
