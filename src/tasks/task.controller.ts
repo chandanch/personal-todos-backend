@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { AppDataSource } from '../../data-source';
 import { Task } from './task.entity';
 import { instanceToPlain } from 'class-transformer';
+import { Repository } from 'typeorm';
 
 class TaskController {
 	/**
@@ -55,6 +56,35 @@ class TaskController {
 	}
 
 	async updateTask(req: Request, res: Response): Promise<Response> {
+		// get task repository
+		const taskRepository: Repository<Task> =
+			AppDataSource.getRepository(Task);
+
+		let task: Task | null;
+
+		// get the task from DB
+		try {
+			task = await taskRepository.findOneBy({ id: req.params.id });
+		} catch (error) {
+			return res.status(500).json({ error: 'Failed to update task' });
+		}
+
+		if (!task) {
+			return res
+				.status(404)
+				.json({ error: `Task with id ${req.params.id} not found` });
+		}
+
+		task.status = req.body.status;
+
+		// update the task in DB
+		try {
+			const updatedTask: Task = await taskRepository.save(task);
+			return res.status(200).json(instanceToPlain(updatedTask));
+		} catch (error) {
+			return res.status(500).json({ error: 'Failed to update task' });
+		}
+
 		return res.send({ taskId: req.params.id });
 	}
 }
