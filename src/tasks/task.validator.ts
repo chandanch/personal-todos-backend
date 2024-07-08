@@ -34,3 +34,12 @@ export const createTaskValidationRules: Array<ValidationChain> = [
 			`Invalid Status, Must be either of ${Status.todo} or ${Status.inProgress} or ${Status.completed} `,
 		),
 ];
+
+export const updateTaskValidationRules: Array<ValidationChain> = [
+	body('status')
+		.trim()
+		.isIn([Status.todo, Status.inProgress, Status.completed])
+		.withMessage(
+			`Invalid Status, Must be either of ${Status.todo} or ${Status.inProgress} or ${Status.completed} `,
+		),
+];
