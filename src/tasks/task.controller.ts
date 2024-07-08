@@ -46,7 +46,7 @@ class TaskController {
 
 		try {
 			// save new task in DB
-			const createdTask = taskRepository.save(task);
+			const createdTask = await taskRepository.save(task);
 			return res.status(201).json(instanceToPlain(createdTask));
 		} catch (error) {
 			console.log(error);
