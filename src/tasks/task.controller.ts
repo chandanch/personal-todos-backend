@@ -53,6 +53,10 @@ class TaskController {
 			return res.status(500).send('Error occured when saving task');
 		}
 	}
+
+	async updateTask(req: Request, res: Response): Promise<Response> {
+		return res.send({ taskId: req.params.id });
+	}
 }
 
 export const taskController: TaskController = new TaskController();
