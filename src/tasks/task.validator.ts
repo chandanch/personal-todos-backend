@@ -24,9 +24,20 @@ export const createTaskValidationRules: Array<ValidationChain> = [
 
 	body('priority')
 		.trim()
-		.isIn([Priority.low, Priority.normal, Priority.low])
-		.withMessage('Invalid Priority selected, Must be high, normal or low'),
+		.isIn([Priority.low, Priority.normal, Priority.high])
+		.withMessage(
+			`Invalid Priority selected, Must be ${Priority.low}, ${Priority.normal}, or ${Priority.high},`,
+		),
 
+	body('status')
+		.trim()
+		.isIn([Status.todo, Status.inProgress, Status.completed])
+		.withMessage(
+			`Invalid Status, Must be either of ${Status.todo} or ${Status.inProgress} or ${Status.completed} `,
+		),
+];
+
+export const updateTaskValidationRules: Array<ValidationChain> = [
 	body('status')
 		.trim()
 		.isIn([Status.todo, Status.inProgress, Status.completed])
