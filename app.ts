@@ -45,7 +45,7 @@ AppDataSource.initialize()
 		console.log('DB Connection Successful');
 		// 4. Start listening for requests on the above defined port
 		app.listen(APP_PORT, '', () => {
-			console.log('Server started');
+			console.log('Server started', `Port: ${process.env.APP_PORT}`);
 		});
 	})
 	.catch((err) => console.log('Error when connecting to DB', err));
