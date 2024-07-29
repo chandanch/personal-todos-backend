@@ -20,7 +20,7 @@ export const createTaskValidationRules: Array<ValidationChain> = [
 		.isEmpty()
 		.withMessage('Due Date field is required')
 		.isString()
-		.withMessage('Due Date must be in a valid date format'),
+		.withMessage('Due Date must contain  a valid date string format'),
 
 	body('priority')
 		.trim()
