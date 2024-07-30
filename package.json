@@ -15,7 +15,8 @@
 		"url": "git+https://github.com/chandanch/personal-todos-backend.git"
 	},
 	"keywords": [
-		"personaltodos"
+		"personaltodos",
+		"todoats"
 	],
 	"author": "chandanch",
 	"license": "ISC",
